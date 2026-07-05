@@ -1,10 +1,14 @@
+/**
+ * PANDA ASSISTANT - Core Assistant Persona Engine
+ * Updated for Yanuar-Moga Assets
+ */
 const AssistantEngine = {
     current: "Panda",
-    config: {},
 
     async init() {
         const saved = localStorage.getItem("panda_assistant_persona");
         if(saved) this.current = saved;
+        
         this.renderWidget();
         
         document.getElementById("assistant-widget").addEventListener("click", () => {
@@ -14,8 +18,13 @@ const AssistantEngine = {
 
     renderWidget() {
         const gif = document.getElementById("assistant-gif");
-        // Pemetaan dinamis karakter
-        gif.src = `assets/assistants/${this.current.toLowerCase()}/idle.gif`;
+        if (!gif) return;
+
+        if (this.current.toLowerCase() === "clippy") {
+            gif.src = "https://yanuar-moga.github.io/assistant/assets/icons/clippy.gif";
+        } else {
+            gif.src = "https://yanuar-moga.github.io/assistant/assets/icons/mypanda.gif";
+        }
     },
 
     activateChatbox() {
@@ -27,7 +36,9 @@ const AssistantEngine = {
         chatbox.classList.remove("crt-shutdown");
         chatbox.classList.add("slide-up");
         
-        ChatEngine.triggerGreeting();
+        if (typeof ChatEngine !== 'undefined') {
+            ChatEngine.triggerGreeting();
+        }
     },
 
     deactivateChatbox() {
@@ -47,10 +58,23 @@ const AssistantEngine = {
     switchPersona(name) {
         this.current = name;
         localStorage.setItem("panda_assistant_persona", name);
-        this.renderWidget();
         
         const avatar = document.getElementById("header-avatar");
-        avatar.src = `assets/icons/${name.toLowerCase()}.png`;
-        document.getElementById("header-title").innerText = `${name.toUpperCase()} ASSISTANT`;
+        const title = document.getElementById("header-title");
+        
+        if (name.toLowerCase() === "clippy") {
+            avatar.src = "https://yanuar-moga.github.io/assistant/assets/icons/clippy.png";
+        } else {
+            avatar.src = "https://yanuar-moga.github.io/assistant/assets/icons/panda.png";
+        }
+        
+        title.innerText = `${name.toUpperCase()} ASSISTANT`;
+        this.renderWidget();
+        
+        console.log("Persona switched to:", name);
     }
 };
+
+document.addEventListener('DOMContentLoaded', () => {
+    AssistantEngine.init();
+});
