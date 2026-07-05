@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PANDA ASSISTANT - Intelligent Character AI</title>
+    <title>AI ASSISTANT - Intelligent Character AI</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/chat.css">
     <link rel="stylesheet" href="css/animation.css">
@@ -15,14 +15,16 @@
     <div id="app-background" class="fullscreen-bg"></div>
 
     <div id="assistant-widget" class="assistant-character idle-animation">
-        <img id="assistant-gif" src="assets/assistants/panda/idle.gif" alt="AI Character">
+        <img id="assistant-gif" src="https://yanuar-moga.github.io/assistant/assets/icons/mypanda.gif" alt="AI Character">
     </div>
 
     <div id="chatbox-container" class="chatbox-hidden">
         <div class="chat-header">
             <div class="header-left">
-                <img id="header-avatar" src="assets/icons/panda.png" class="avatar-img" alt="Avatar">
-                <h3 id="header-title" class="typewriter">PANDA ASSISTANT</h3>
+                <img id="header-avatar" src="https://yanuar-moga.github.io/assistant/assets/panda.png" class="avatar-img" alt="Avatar">
+                <div class="header-title-container">
+                    <h3 id="header-title" class="typewriter">PANDA ASSISTANT</h3>
+                </div>
             </div>
             <div class="header-right">
                 <button id="btn-minimize" class="control-btn" title="Minimize">_</button>
@@ -33,7 +35,7 @@
         <div id="chat-body" class="chat-body-area"></div>
 
         <div id="typing-indicator" class="typing-area hide-typing">
-            <span id="typing-text">Panda sedang mengetik...</span>
+            <span id="typing-text">🐼 Sedang mengetik...</span>
         </div>
 
         <div id="command-autocomplete" class="autocomplete-popup hide-popup"></div>
@@ -55,22 +57,19 @@
     <script src="js/theme.js"></script>
     <script src="js/analytics.js"></script>
     <script src="js/typing.js"></script>
-
     <script src="js/account.js"></script>
     <script src="js/notification.js"></script>
     <script src="js/memory.js"></script>
     <script src="js/commands.js"></script>
-
     <script src="js/assistant.js"></script>
     <script src="js/chat.js"></script>
-    
     <script src="js/app.js"></script>
 
     <script>
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('service-worker.js')
-                .then(reg => console.log('PWA Service Worker registered successfully:', reg.scope))
-                .catch(err => console.error('Service Worker registration failed:', err));
+                .then(reg => console.log('Service Worker registered:', reg.scope))
+                .catch(err => console.error('Service Worker failed:', err));
         }
     </script>
 </body>
